@@ -1,0 +1,30 @@
+http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html
+
+#### Bash - redirect stdout 2 file
+
+        ls -l > ls-l.txt
+
+#### Bash - redirect stderr 2 file
+
+         grep da * 2> grep-errors.txt
+
+#### Bash - redirect stdout 2 stderr
+
+- ouput of program written to the same file descriptor as stderr.
+
+         grep da * 1>&2
+
+#### Bash - redirect stderr 2 stdout
+
+
+ - output of program written to the same file descriptor as stdout.
+
+         grep * 2>&1
+
+#### Bash - redirect stderr and stdout 2 file
+
+- all output of program  written to file; suitable for cron entries, if you want a command to pass in absolute silence.
+
+         rm -f $(find / -name core) &> /dev/null
+
+vim: ft=markdown:

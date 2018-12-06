@@ -1,0 +1,7 @@
+### Docker - override entrypoint
+
+```
+docker run -it --entrypoint=bash <container>
+```
+
+vim: ft=markdown :

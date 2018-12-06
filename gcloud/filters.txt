@@ -1,0 +1,27 @@
+#### Filter snapshots by creation timestamp:
+
+```
+gce snapshots list --sort-by=creationTimestamp --filter="creationTimestamp<=2018-08-01T00:00:00"
+```
+
+#### Filter based on label: 
+
+```
+gcloud compute instances list --filter labels.mylabel=foo
+```
+
+### Filter on multiple label values
+
+```
+gcloud compute instances list --filter "labels.mylabel~foo|slave"
+```
+
+#### Filter disks with no users: 
+
+```
+gcloud compute disks list --filter="-users:*"
+```
+
+(to list only used disks use filter value `users:*`
+
+vim: ft=markdown :

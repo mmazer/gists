@@ -1,0 +1,45 @@
+#### Stackdriver filter - GKE events
+
+```
+resource.type="gke_cluster"
+jsonPayload.kind="Event"
+```
+
+#### Stackdriver filter - killing containers
+
+```
+resource.type="gke_cluster"
+jsonPayload.kind="Event"
+jsonPayload.involvedObject.name:"masterlock-subscription-staging"
+jsonPayload.message:"Killing container"
+```
+
+#### Stackdriver filter - rabbitmq activity by user
+
+```
+resource.type="gce_instance"
+resource.labels.instance_id="2897102314098574766"
+logName="projects/freshbooks-staging/logs/rabbitmq"
+textPayload:"user: 'tolar'"
+```
+
+#### Stackdriver filter - find 502 for a service
+
+```
+resource.type="container"
+resource.labels.cluster_name="application-cluster"
+resource.labels.namespace_id="default"
+logName="projects/freshbooks-staging/logs/nginx-proxy"
+jsonPayload.status="502"
+jsonPayload.request:"/service/auth"
+```
+
+#### Stackdriver filter - OOMKilling
+
+```
+resource.type="gke_cluster"
+jsonPayload.kind="Event"
+jsonPayload.reason="OOMKilling"
+```
+
+vim: ft=markdown :

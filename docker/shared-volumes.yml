@@ -1,0 +1,13 @@
+# see https://github.com/docker/compose/issues/3211
+# Shared data volumes can be defined in separate docker-compose files
+---
+version: '2'
+services:
+  mysql:
+    volumes:
+      - datavolume:/var/run/mysqld
+  app:
+    volumes:
+      - datavolume:/var/run/mysqld
+volumes:
+  datavolume: {}

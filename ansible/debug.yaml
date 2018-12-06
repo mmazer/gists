@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  gather_facts: "no"
+  connection: local
+  tasks:
+    - name: debug datadog password
+      debug:
+        msg: "Datadog password: {{ datadog_mysql_password }}"

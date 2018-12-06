@@ -1,0 +1,8 @@
+### Send metric to statsd from terminal
+
+```shell
+echo "innobackupex_mysql_db01_timing:150|ms" | nc -4u -w0 localhost 8125
+```
+
+vim: ft=markdown :
+

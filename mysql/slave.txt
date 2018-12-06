@@ -1,0 +1,14 @@
+### MySQL - set slave exec mode
+
+```
+stop slave; set global slave_exec_mode='IDEMPOTENT'; start slave;
+```
+
+#### Check current slave exec mode
+
+```
+select @@slave_exec_mode;
+```
+
+vim: ft=markdown :
+
