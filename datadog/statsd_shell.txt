@@ -1,7 +1,16 @@
 ### Send metric to statsd from terminal
 
+See <https://docs.datadoghq.com/developers/dogstatsd/datagram_shell/> 
+
 ```shell
 echo "innobackupex_mysql_db01_timing:150|ms" | nc -4u -w0 localhost 8125
+```
+
+```shell
+# format for metrics: name:<value>|<type:c,g>|#tag1:value1,tag2:value2
+statsd() {
+    echo "$1" | nc -w 2 -u $STATSD_HOST $STATSD_PORT
+}
 ```
 
 vim: ft=markdown :
