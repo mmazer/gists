@@ -1,0 +1,13 @@
+#### Display number of connections per user
+```
+SELECT `USER`, COUNT(*) FROM information_schema.processlist
+GROUP BY `USER`;
+```
+
+#### Display processes associated with SELECT query
+
+```
+SELECT * FROM information_schema.processlist
+WHERE `INFO` LIKE 'SELECT %';
+```
+vim: ft=markdown :

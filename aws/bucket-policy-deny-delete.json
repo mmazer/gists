@@ -1,0 +1,24 @@
+{
+    "Id": "Policy1554404472524",
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1554404429066",
+            "Action": [
+                "s3:DeleteObject"
+            ],
+            "Effect": "Deny",
+            "Resource": "arn:aws:s3:::gcp-production-mysql-backup/*",
+            "Principal": "*"
+        },
+        {
+            "Sid": "Stmt1554404471452",
+            "Action": [
+                "s3:DeleteBucket"
+            ],
+            "Effect": "Deny",
+            "Resource": "arn:aws:s3:::gcp-production-mysql-backup",
+            "Principal": "*"
+        }
+    ]
+}

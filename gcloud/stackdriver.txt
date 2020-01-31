@@ -10,8 +10,24 @@ jsonPayload.kind="Event"
 ```
 resource.type="gke_cluster"
 jsonPayload.kind="Event"
-jsonPayload.involvedObject.name:"masterlock-subscription-staging"
 jsonPayload.message:"Killing container"
+```
+
+#### OOM Killed Events
+```
+resource.type="gke_cluster"
+resource.labels.cluster_name="application-cluster"
+resource.labels.location="us-east1-b"
+jsonPayload.reason="OOMKilling"
+jsonPayload.kind="Event"
+```
+
+#### Horizontal AutoScaler Events
+
+```
+resource.type="gke_cluster"
+jsonPayload.kind="Event"
+jsonPayload.involvedObject.kind="HorizontalPodAutoscaler"
 ```
 
 #### Stackdriver filter - rabbitmq activity by user
@@ -34,12 +50,37 @@ jsonPayload.status="502"
 jsonPayload.request:"/service/auth"
 ```
 
-#### Stackdriver filter - OOMKilling
+### Google LB 502 Errors
+
+Find 502 errors reported by GCP load balancers.
 
 ```
-resource.type="gke_cluster"
-jsonPayload.kind="Event"
-jsonPayload.reason="OOMKilling"
+resource.type="http_load_balancer"
+httpRequest.status=502
+```
+
+#### Google LB - backend connection closed
+
+```
+resource.type="http_load_balancer"
+httpRequest.status=502
+jsonPayload.statusDetails="backend_connection_closed_before_data_sent_to_client"
+```
+
+#### Google LB 502 - response from backend
+```
+resource.type="http_load_balancer"
+httpRequest.status=502
+jsonPayload.statusDetails="response_sent_by_backend"
+```
+
+#### Correlate LB and nginx-proxy reqquests
+
+```
+(resource.type="http_load_balancer"
+trace="projects/freshbooks-prod/traces/<trace_id>") OR
+(resource.type="container"
+jsonPayload.cloud_trace_context:"<trace_id>")
 ```
 
 vim: ft=markdown :

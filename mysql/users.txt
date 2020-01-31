@@ -1,0 +1,9 @@
+#### Create User
+
+`create user 'developer'@'%' identified by 'sekret';`
+
+#### Grants
+
+`grant select on *.* to 'developer'@'%';`
+
+vim: ft=markdown :

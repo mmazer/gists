@@ -1,0 +1,8 @@
+http://tldp.org/HOWTO/TCP-Keepalive-HOWTO/usingkeepalive.html
+
+#### Show TCP keepalive configuration
+```
+sysctl net.ipv4.tcp_keepalive_time net.ipv4.tcp_keepalive_intvl net.ipv4.tcp_keepalive_probes
+```
+
+vim: ft=markdown :
