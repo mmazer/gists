@@ -1,8 +1,31 @@
+See <https://cloud.google.com/logging/docs/view/advanced-queries>
+
 #### Stackdriver filter - GKE events
 
 ```
 resource.type="gke_cluster"
 jsonPayload.kind="Event"
+```
+
+#### Stackdriver filter - nodes available
+```
+resource.type="gke_cluster"
+severity>=WARNING
+jsonPayload.message:"nodes are available"
+```
+
+#### Stackdriver filter - Failed Scheduling Warnings
+```
+resource.type="gke_cluster"
+severity>=WARNING
+jsonPayload.message:"nodes are available"
+jsonPayload.reason="FailedScheduling"
+```
+
+For a specific application, add:
+
+```
+jsonPayload.involvedObject.name:"evolve-app-production"
 ```
 
 #### Stackdriver filter - killing containers
