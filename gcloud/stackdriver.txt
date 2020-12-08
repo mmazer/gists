@@ -1,22 +1,28 @@
 See <https://cloud.google.com/logging/docs/view/advanced-queries>
 
+Logs can also be read using `gcloud logging read`, e.g
+```
+gcloud logging read --limit 10 "resource.type=k8s_container AND labels.k8s-pod/app=cardapp" --format="value(jsonPayload.message)
+```
+
+**Note:** `k8s_cluster` has been replaced by `k8s_cluster`
 #### Stackdriver filter - GKE events
 
 ```
-resource.type="gke_cluster"
+resource.type="k8s_cluster"
 jsonPayload.kind="Event"
 ```
 
 #### Stackdriver filter - nodes available
 ```
-resource.type="gke_cluster"
+resource.type="k8s_cluster"
 severity>=WARNING
 jsonPayload.message:"nodes are available"
 ```
 
 #### Stackdriver filter - Failed Scheduling Warnings
 ```
-resource.type="gke_cluster"
+resource.type="k8s_cluster"
 severity>=WARNING
 jsonPayload.message:"nodes are available"
 jsonPayload.reason="FailedScheduling"
@@ -31,14 +37,14 @@ jsonPayload.involvedObject.name:"evolve-app-production"
 #### Stackdriver filter - killing containers
 
 ```
-resource.type="gke_cluster"
+resource.type="k8s_cluster"
 jsonPayload.kind="Event"
 jsonPayload.message:"Killing container"
 ```
 
 #### OOM Killed Events
 ```
-resource.type="gke_cluster"
+resource.type="k8s_cluster"
 resource.labels.cluster_name="application-cluster"
 resource.labels.location="us-east1-b"
 jsonPayload.reason="OOMKilling"
@@ -48,7 +54,7 @@ jsonPayload.kind="Event"
 #### Horizontal AutoScaler Events
 
 ```
-resource.type="gke_cluster"
+resource.type="k8s_cluster"
 jsonPayload.kind="Event"
 jsonPayload.involvedObject.kind="HorizontalPodAutoscaler"
 ```
@@ -104,6 +110,15 @@ jsonPayload.statusDetails="response_sent_by_backend"
 trace="projects/freshbooks-prod/traces/<trace_id>") OR
 (resource.type="container"
 jsonPayload.cloud_trace_context:"<trace_id>")
+```
+
+#### Pod Scaling Events
+
+```
+resource.type="k8s_cluster"
+resource.labels.cluster_name="private-application-cluster"
+jsonPayload.reason="ScalingReplicaSet"
+jsonPayload.kind="Event"
 ```
 
 vim: ft=markdown :
