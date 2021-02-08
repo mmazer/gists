@@ -1,0 +1,13 @@
+- ansible/
+- aws/
+- bash/
+- datadog/
+- docker/
+- gcloud/
+- git/
+- kubernetes/
+- linux/
+- mysql/
+- python/
+- rabbitmq/
+- redis/

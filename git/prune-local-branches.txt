@@ -1,0 +1,4 @@
+See https://coderwall.com/p/x3jmig/remove-all-your-local-git-branches-but-keep-master
+
+# delete all local branches except master
+git branch | grep -v master | xargs git -D
